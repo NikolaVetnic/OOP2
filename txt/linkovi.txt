@@ -1,0 +1,10 @@
+JAVADOC
+
+https://docs.oracle.com/javase/7/docs/technotes/guides/collections/index.html
+
+LINKOVI
+
+Tutorial - Inheritance						http://tutorials.jenkov.com/java/inheritance.html
+Tutorial - Exception Handling 				http://tutorials.jenkov.com/java-exception-handling/index.html
+Tutorial - Strings							http://tutorials.jenkov.com/java/strings.html
+Tutorial - Enums							http://tutorials.jenkov.com/java/enums.html

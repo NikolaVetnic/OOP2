@@ -1,0 +1,14 @@
+<Person>
+  <FirstName>Petar</FirstName>
+  <LastName>Petrovic</LastName>
+  <Address>
+    <Street>Bulevar Kralja Petra I</Street>
+    <City>Novi Sad</City>
+    <State>Srbija</State>
+    <PostalCode>21000</PostalCode>
+  </Address>
+  <Phone>
+    <Home>+38121123456</Home>
+    <Work>+38166123456</Work>
+  </Phone>
+</Person>

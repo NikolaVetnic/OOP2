@@ -1,0 +1,176 @@
+24
+
+Opel Corsa
+2007
+Benzin
+59
+Crvena
+57000
+
+Skoda Octavia
+2015
+Dizel
+43
+Siva
+102000
+
+Skoda Superb
+2015
+Dizel
+52
+Bordo
+105000
+
+Peugeot 206
+2003
+Dizel
+51
+Plava
+152000
+
+Opel Astra
+2003
+Dizel
+55
+Siva
+122000
+
+Citroen C4
+2011
+Dizel
+82
+Plava
+52000
+
+Renault Twingo
+2007
+Benzin
+43
+Bela
+120000
+
+Lancia Lybra
+2001
+Plin
+96
+Siva
+157000
+
+Zastava 10
+2008
+Benzin
+44
+Crna
+68000
+
+Ford Mondeo
+1998
+Dizel
+66
+Crvena
+182000
+
+Opel Astra
+2002
+Dizel
+55
+Bela
+153000
+
+Tesla S
+2015
+Elektro
+245
+Crna
+0
+
+Tesla X
+2015
+Elektro
+190
+Bela
+0
+
+Mazda 6
+2006
+Benzin
+119
+Crvena
+43000
+
+Zastava 101
+2006
+Plin
+40
+Crvena
+179000
+
+Zastava Koral
+2005
+Benzin
+45
+Crna
+164000
+
+Lancia Ypsilon
+2003
+Dizel
+44
+Siva
+200000
+
+Cederholm #2
+1894
+Ugalj
+4.5
+Crna
+1200
+
+Lancia Ypsilon
+2005
+Plin
+42
+Crvena
+132000
+
+Honda CR-V
+2000
+Plin
+108
+Siva
+263000
+
+Smart ForTwo
+2005
+Dizel
+52
+Zuta
+50000
+
+Prinz
+1995
+Benzin
+25
+Crvena
+43000
+
+Mercedes Benz 190
+1992
+Plin
+90
+Siva
+325000
+
+BMW ActiveHybrid 5
+2014
+Hibrid
+225
+Siva
+23000
+
+BMW Z4
+2013
+Benzin
+115
+Plava
+46000
