@@ -112,9 +112,9 @@ public class RasporedProgram1 {
 		}
 	}
 	
-
+	
 	private static void print(String[] lines, String name) {
-		
+
 		/*
 		 * Ideja je bila da se svi nazivi iz predmeta ucitanih u TreeSet p-
 		 * orede sa unosom i da se za taj par stringova racuna string dist-
@@ -125,6 +125,10 @@ public class RasporedProgram1 {
 		 * rednosti budu kljucevi), a zatim se prikazuje samo prvi rezultat
 		 * ukoliko je distanca 0 (savrseno poklapanje), inace prikazujem p-
 		 * rva tri rezultata (nesto poput "did you mean?" na Google-u).
+		 * 
+		 * UPDATE : dodao sam poredjenje svake reci naziva predmeta sa uno-
+		 * som, pa se uzima najmanja pronadjena string distanca za citav p-
+		 * redmet.
 		 */ 
 		
 		name = name.toLowerCase();
@@ -138,7 +142,16 @@ public class RasporedProgram1 {
 			Item curr = it.next();
 			if (!curr.tip().equalsIgnoreCase("p")) continue;
 			
-			m.put(curr, new EditDistance(name, curr.predmet().toLowerCase()).getDistance());
+			String[] tokens = curr.predmet().toLowerCase().split("\\s|-");
+			
+			Map<String, Integer> temp = new HashMap<String, Integer>();
+			
+			for (String s : tokens) temp.put(s, new EditDistance(name, s).getDistance());
+			
+			List<Entry<String, Integer>> listOfEntries = new ArrayList<Entry<String, Integer>>(temp.entrySet());
+			Collections.sort(listOfEntries, (e1, e2) -> e1.getValue() - e2.getValue());
+			
+			m.put(curr, listOfEntries.get(0).getValue());
 		}
 		
 		List<Entry<Item, Integer>> listOfEntries = new ArrayList<Entry<Item, Integer>>(m.entrySet());
