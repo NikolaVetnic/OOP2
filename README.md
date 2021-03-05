@@ -19,6 +19,9 @@ Materijal sa predmeta Objektno orijentisano programiranje 2 na PMFu, Novi Sad.
 - 01 Ponavljanje: kolekcije
 - 01 Ponavljanje: kolekcije (zadaci sa SPA2)
 
+## Domaci zadaci
+- 01 Raspored predavanja
+
 ## Prakticne vezbe
 - u fazi izrade...
 
