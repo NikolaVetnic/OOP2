@@ -5,8 +5,8 @@ import java.util.Stack;
 public class EditDistance {
 
 	
-	private String s1, s2;		// ulazni stringovi
-	private int[][] d;			// matrica distanci
+	private String s1, s2;
+	private int[][] d;
 	
 	
 	public EditDistance(String s1, String s2) {
@@ -92,13 +92,5 @@ public class EditDistance {
 			while (!messages.isEmpty())
 				System.out.println(messages.pop());
 		}
-	}
-	
-	
-	public static void main(String[] args) {
-		
-		EditDistance ed = new EditDistance("petar", "patrik");
-		System.out.println(ed.getDistance());
-		ed.getExplanation();
 	}
 }
