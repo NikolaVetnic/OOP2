@@ -4,16 +4,30 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
+
+import domaci_zadaci.z01_p01.util.EditDistance;
 
 public class RasporedProgram1 {
 	
 	
+    /***************************
+     * NIKOLA VETNIC 438/19 IT *
+     ***************************/
+	
+	
 	private static Set<Item> predmeti = new TreeSet<Item>();
+	private static Set<String> nazivi = new TreeSet<String>();
 	
 
 	public static void main(String[] args) throws IOException {
@@ -83,7 +97,10 @@ public class RasporedProgram1 {
 				}
 				
 				try {
-					predmeti.add(new Item(DTSTART, DTEND, RRULE, SUMMARY));
+					Item item = new Item(DTSTART, DTEND, RRULE, SUMMARY);
+					
+					predmeti.add(item);
+					nazivi.add(item.predmet().toLowerCase());
 				} catch (NumberFormatException e) {
 					System.err.printf("Linija %05d -> %s \n", (i + count), e.getMessage());
 				} catch (IllegalArgumentException e) {
@@ -98,21 +115,40 @@ public class RasporedProgram1 {
 
 	private static void print(String[] lines, String name) {
 		
-		Item out = null;
+		/*
+		 * Ideja je bila da se svi nazivi iz predmeta ucitanih u TreeSet p-
+		 * orede sa unosom i da se za taj par stringova racuna string dist-
+		 * anca, koja ce se zajedno sa Item objektom smestati u mapu; ta m-
+		 * apa se zatim pretvara u listu i sortira prema vrednostima (pret-
+		 * postavio sam da bi moglo da se desi da razliciti predmeti dobiju
+		 * istu distancu u odnosu na unos pa zato ne bi bilo dobro da te v-
+		 * rednosti budu kljucevi), a zatim se prikazuje samo prvi rezultat
+		 * ukoliko je distanca 0 (savrseno poklapanje), inace prikazujem p-
+		 * rva tri rezultata (nesto poput "did you mean?" na Google-u).
+		 */ 
+		
+		name = name.toLowerCase();
+		
 		Iterator<Item> it = predmeti.iterator();
 		
+		Map<Item, Integer> m = new HashMap<Item, Integer>();
+		
 		while (it.hasNext()) {
-			Item curr = it.next();
 			
-			if (curr.predmet().toLowerCase().contains(name.toLowerCase()) && curr.tip().equalsIgnoreCase("p")) {
-				out = curr;
-				break;
-			}
+			Item curr = it.next();
+			if (!curr.tip().equalsIgnoreCase("p")) continue;
+			
+			m.put(curr, new EditDistance(name, curr.predmet().toLowerCase()).getDistance());
 		}
 		
-		if (out != null)
-			System.out.println(out);
-		else
-			System.out.println("Predavanja iz unetog predmeta ne postoje u rasporedu.");
+		List<Entry<Item, Integer>> listOfEntries = new ArrayList<Entry<Item, Integer>>(m.entrySet());
+		Collections.sort(listOfEntries, (e1, e2) -> e1.getValue() - e2.getValue());
+		
+		if (listOfEntries.get(0).getValue() == 0) {
+			System.out.println(listOfEntries.get(0).getKey());
+		} else {
+			System.out.println("Trazeni predmet nije pronadjen; prikaz tri najpribliznija rezultata:");
+			for (int i = 0; i < 3; i++) System.out.println(listOfEntries.get(i).getKey());
+		}
 	}
 }
