@@ -1,6 +1,7 @@
 package domaci_zadaci.z01_p01;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Item implements Comparable<Item> {
@@ -51,6 +52,9 @@ public class Item implements Comparable<Item> {
 	private String sala;
 	
 	
+	public Item() { }
+	
+	
 	public Item(String DTSTART, String DTEND, String RRULE, String SUMMARY) {
 		this.start = parseTime(DTSTART);
 		this.end = parseTime(DTEND);
@@ -69,7 +73,13 @@ public class Item implements Comparable<Item> {
 		if (!isInteger(hh) || !isInteger(mm))
 			throw new NumberFormatException("Greska u osobini " + tag);
 		
-		return new Time(Integer.parseInt(hh), Integer.parseInt(mm));
+		int h = Integer.parseInt(hh),
+			m = Integer.parseInt(mm);
+		
+		if (h < 0 || h >= 24 || m < 0 || m >= 60)
+			throw new NumberFormatException("Greska u osobini " + tag);
+		
+		return new Time(h, m);
 	}
 	
 	
@@ -145,6 +155,49 @@ public class Item implements Comparable<Item> {
 
 	public String toString() {
 		return String.format("%50s %30s %5s %20s %3s [ %02d:%02d - %02d:%02d ]", predmet, nastavnik, tip, sala, dan, start.h(), start.m(), end.h(), end.m());
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		
+		if (this == o)
+			return true;
+		
+		if (o == null)
+			return false;
+		
+		if (this.getClass() != o.getClass())
+			return false;
+		
+		Item i = (Item) o;
+		
+		if (!Objects.equals(start(), i.start()) 		||
+			!Objects.equals(end(), i.end())				||
+			!Objects.equals(dan(), i.dan())				||
+			!Objects.equals(predmet(), i.predmet())		||
+			!Objects.equals(nastavnik(), i.nastavnik())	||
+			!Objects.equals(tip(), i.tip())				||
+			!Objects.equals(sala(), i.sala())			 )
+			return false;
+		else
+			return true;
+	}
+	
+	@Override
+	public int hashCode() {
+		
+		return 	7  * toMinutes(start()) 	+ 
+				11 * toMinutes(end()) 		+ 
+				13 * dan().ordinal() 		+
+				17 * predmet().hashCode() 	+ 
+				19 * nastavnik().hashCode() + 
+				23 * tip().hashCode()		+
+				29 * sala().hashCode()		;
+	}
+
+
+	private int toMinutes(Time t) {
+		return t.h() * 60 + t.m();
 	}
 
 

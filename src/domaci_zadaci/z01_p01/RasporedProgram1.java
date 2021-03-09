@@ -5,10 +5,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +35,8 @@ public class RasporedProgram1 {
 		
 		check(lines);
 		
+//		testHash(predmeti);
+		
 		System.out.println("SPISAK PREDMETA : ");
 		Iterator<Item> it = predmeti.iterator();
 		while (it.hasNext()) System.out.println(it.next());
@@ -47,6 +48,18 @@ public class RasporedProgram1 {
 
 	}
 	
+
+	private static void testHash(Set<Item> s) {
+		
+		Set<Integer> hashCodeSet = new HashSet<Integer>();
+		
+		Iterator<Item> it = s.iterator();
+		while (it.hasNext()) hashCodeSet.add(it.next().hashCode());
+		
+		System.out.println("Broj stavki u prosledjenom spisku / broj razlicitih hash vrednosti: " 
+				+ s.size() + " / " + hashCodeSet.size());
+	}
+
 
 	private static String[] readFile() throws IOException {
 		
