@@ -17,7 +17,7 @@ import java.util.TreeSet;
 
 import domaci_zadaci.z01_p01.util.EditDistance;
 
-public class RasporedProgram1 {
+public class Main {
 	
 	
     /***************************
@@ -65,12 +65,14 @@ public class RasporedProgram1 {
 		
 		try (BufferedReader in = new BufferedReader(
 				new InputStreamReader(
-						RasporedProgram1.class.getResourceAsStream("res/raspored.ics")))) {
+						Main.class.getResourceAsStream("res/raspored.ics")))) {
 			
 			List<String> lines = new ArrayList<>();
 			String line;
 			
 			while ((line = in.readLine()) != null) lines.add(line);
+			
+			System.out.println(lines);
 			
 			return lines.toArray(new String[lines.size()]);
 		}
